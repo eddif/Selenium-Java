@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="TestSuite" parallel="tests">
+    <test name="FireFox Test">
+        <parameter name="browserType" value="firefox" />
+        <classes>
+            <class name="smoketests.Login_Tests">
+            </class>
+        </classes>
+    </test>
+    <test name="Chrome Test">
+        <parameter name="browserType" value="chrome" />
+        <classes>
+            <class name="smoketests.Login_Tests">
+            </class>
+        </classes>
+    </test>
+</suite>

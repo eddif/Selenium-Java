@@ -6,9 +6,11 @@ import bizops.common.TestBase;
 import bizops.pages.Login;
 import bizops.pages.MarkupHome;
 import org.junit.After;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +20,7 @@ public class MarkupHome_Tests extends TestBase {
 
     private MarkupHome markupHomePage;
 
-    @Before
-    public void setup(){
+    @BeforeTest public void setup(){
 
         // initial test suite setup
 
@@ -35,16 +36,14 @@ public class MarkupHome_Tests extends TestBase {
 
     }
 
-    @Test
-    public void VerifyDefaultMarkupValuesAreSaved(){
+    @Test public void VerifyDefaultMarkupValuesArePersistedAfterSave(){
 
         Browser.Goto("markup");
 
         //Create new Default Markup
         markupHomePage.ClickDefaultMarkupSettingsLink();
-        markupHomePage.SelectBrandRadioButton("Travel Impressions");
-       // markupHomePage.SelectAdditionalPercentageRadioButton();
-        markupHomePage.SelectProfitMarginRadioButton();
+        markupHomePage.SelectBrand("Travel Impressions");
+        markupHomePage.SelectProfitMargin();
         markupHomePage.EnterGlobalMarkupAmount("199");
         markupHomePage.SelectCurrency("MXN");
         markupHomePage.save_button.click();
@@ -54,18 +53,17 @@ public class MarkupHome_Tests extends TestBase {
         // Verify Default Markup Values are Saved
 
         markupHomePage.ClickDefaultMarkupSettingsLink();
-        markupHomePage.SelectBrandRadioButton("Travel Impressions");
+        markupHomePage.SelectBrand("Travel Impressions");
 
-        Assert.assertTrue(markupHomePage.markup_type_margin_radio_button.isSelected());
-        Assert.assertTrue(markupHomePage.markup_value_textbox.getAttribute("value").contains("199"));
-        Assert.assertTrue(markupHomePage.currency_dropdown.isEnabled());
+        assertTrue(markupHomePage.markup_type_margin_radio_button.isSelected());
+        assertTrue(markupHomePage.markup_value_textbox.getAttribute("value").contains("199"));
+        assertTrue(markupHomePage.currency_dropdown.isEnabled());
 
         markupHomePage.cancel_button.click();
 
     }
 
-    @After
-    public void close(){
+    @AfterTest public void close(){
 
         // Use only if needed, otherwise the browser will close gracefully when all tests suites/classes have been executed
         Browser.Close();

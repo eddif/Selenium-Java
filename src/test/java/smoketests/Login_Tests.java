@@ -6,47 +6,39 @@ import bizops.pages.BizopsHomePage;
 import bizops.pages.Login;
 import bizops.common.Pages;
 import org.junit.After;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 
 public class Login_Tests extends TestBase{
 
-   private Login loginPage;
-
-    private BizopsHomePage bizopsHomePage;
-
-    @Before
-    public void setup(){
-
-        // initial test suite setup
-
-        Browser.Goto("login/home");
-        Browser.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-        // initiate pages to be used in all tests
-
-        loginPage = Pages.initPage(Login.class);
-        bizopsHomePage = Pages.initPage(BizopsHomePage.class);
+    @BeforeClass
+    public void Initialize() throws MalformedURLException{
 
     }
 
     @Test
-    public void LoginAsQA(){
-
+    public void LoginAsQA1(){
+        Browser.SleepFor(5000);
         loginPage.LoginInAs("qa", "test");
-
-        Assert.assertTrue(bizopsHomePage.PageTitleIs());
+        Browser.SleepFor(5000);
+        assertTrue(bizopsHomePage.PageTitleIs());
     }
 
-    @After
-    public void close(){
+//    @Test
+//    public void LoginAsQA2(){
+//        Browser.SleepFor(5000);
+//        loginPage.LoginInAs("qa", "test");
+//        Browser.SleepFor(5000);
+//        assertTrue(bizopsHomePage.PageTitleIs());
+//    }
 
-       // Use only if needed, otherwise the browser will close gracefully when all tests suites/classes have been executed
-        Browser.Close();
+    @AfterClass public void close(){
 
     }
 

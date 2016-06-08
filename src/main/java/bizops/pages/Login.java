@@ -17,16 +17,18 @@ public class Login extends Pages {
     // Locators
 
     @FindBy(id = "input_username" )
-    @CacheLookup
     WebElement username_field;
 
     @FindBy(id = "input_password")
-    @CacheLookup
     WebElement password_field;
 
     @FindBy(id = "button_submit")
-    @CacheLookup
     WebElement login_button;
+
+    public Login(WebDriver driver){
+        this.driver = driver;
+    }
+
 
     public void LoginInAs(String _username, String _password){
         ClearLoginFields();
@@ -45,7 +47,6 @@ public class Login extends Pages {
 
     public void ClickLoginButton(){
         login_button.click();
-
     }
 
     public void ClearLoginFields(){

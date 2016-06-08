@@ -16,11 +16,13 @@ import java.util.Properties;
 
 public class Settings {
 
+    private static final String SELENIUM_ENVIRNOMENT = "selenium.environment";
     private static final String SELENIUM_BASEURL = "selenium.baseUrl";
     private static final String SELENIUM_BROWSER = "selenium.browser";
     private static final String SELENIUM_PROPERTIES = "selenium.properties";
     public static final String TEST_CLASSES_PATH = ".//target//test-classes";
 
+    private String environment;
     private String baseUrl;
     private BrowserType browser;
     private Properties properties = new Properties();
@@ -31,6 +33,7 @@ public class Settings {
 
     private void loadSettings() {
         properties = loadPropertiesFile();
+        environment = getPropertyOrThrowException(SELENIUM_ENVIRNOMENT);
         baseUrl = getPropertyOrThrowException(SELENIUM_BASEURL);
         browser = BrowserType.Browser(getPropertyOrThrowException(SELENIUM_BROWSER));
     }
@@ -115,6 +118,10 @@ public class Settings {
 
     public BrowserType getBrowser() {
         return browser;
+    }
+
+    public String getTestEnvironement(){
+        return environment;
     }
 }
 

@@ -78,7 +78,7 @@ public class MarkupHome extends Pages {
 
     }
 
-    public void SelectBrandRadioButton(String brandname) {
+    public void SelectBrand(String brandname) {
 
         String brandkey = "";
 
@@ -113,7 +113,7 @@ public class MarkupHome extends Pages {
         markup_type_add_radio_button.click();
     }
 
-    public void SelectProfitMarginRadioButton(){
+    public void SelectProfitMargin(){
         markup_type_margin_radio_button.click();
     }
 

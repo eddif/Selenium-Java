@@ -24,7 +24,7 @@ public class Browser {
     }
 
     public static void Close(){
-        driver.close();
+        driver.quit();
     }
 
 //    public static void Title() {
